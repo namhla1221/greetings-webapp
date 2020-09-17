@@ -57,8 +57,13 @@
 
             <div class="counter">
                 {{counter}}
-
+{{#if messages.error}}
 {{messages.error}}
+{{else}}
+<h1>Unknown Author</h1>
+
+{{/if}}
+
             </div>
         </div>
     </div>

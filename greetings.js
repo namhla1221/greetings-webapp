@@ -7,13 +7,14 @@ module.exports = function greetings() {
     function setName(name) {
         //if statement that says if the name that I entered it's not there it must be undefined
         //but my empty object must start to count it from 0.
+        if(name){
         if (nameList[name] === undefined) {
             nameList[name] = 0;
         }
 
         nameList[name]++
     }
-
+    }
     function getNames() {
         return nameList
     }

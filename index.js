@@ -18,7 +18,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: false }))
-
+greetings
 app.use(bodyParser.json())
 
 
@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 //flash - is used to store message
 //session- is used to save data
 //Session data is stored server-side.
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 
 // Flash
 app.use(flash());
@@ -59,11 +59,11 @@ app.post("/greetings", function (req, res) {
 
     //Flash messages are used to provide a quick feedback 
     //to confirm a setting has been updated) to the user.
-    if (name === '') {
+    if (!name) {
         req.flash('error', "Please enter username")
+        res.render('index');
+        return
     }
-    
-    else{
      greetings.setName(name);
 
     res.render('index', {
@@ -71,7 +71,6 @@ app.post("/greetings", function (req, res) {
         counter: greetings.theCounter(),
         
     })
-    }
 });
 
 //route for greeted , this route will greet people and start to calculate how many times I greeted that person .
