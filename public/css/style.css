@@ -1,1 +1,20 @@
 
+    .greet {
+        background-color: whitesmoke;
+        color: rgb(15, 14, 14);
+        border: 2px solid black;
+        margin: 140px;
+        padding: 100px;
+    }
+    
+
+    .message{
+       
+        color: red;
+    }
+
+    h1 {
+        color: black;
+    }
+
+   
