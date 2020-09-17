@@ -1,0 +1,65 @@
+<style>
+    .greet {
+        background-color: rgb(213, 111, 238);
+        color: rgb(15, 14, 14);
+        border: 2px solid black;
+        margin: 10px;
+        padding: 10px;
+    }
+}
+    h1 {
+        color: black;
+    }
+</style>
+<div class="greet">
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <h1>GREETINGS</h1>
+                <label>Name</label>
+                <form action="/greetings" method="post">
+                    <input type="text" id="myText" value="" name="nameEntered" placeholder="write name"
+                        class="textbox" />
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container2">
+        <div class="row3">
+            <div class="col-1">
+                <input type="radio" id="radiobutton" name="language" value="Isixhosa" class="radioButton">Isixhosa
+                <input type="radio" id="radiobutton" name="language" value="English" class="radioButton">English
+                <input type="radio" id="radiobutton" name="language" value="Afrikaans" class="radioButton">Afrikaans
+            </div>
+        </div>
+    </div>
+
+    <div class="container1">
+        <div class="row2">
+            <div class="col-1">
+                <button type="submit" name="button" class="button">Greet</button>
+            </div>
+        </div>
+    </div>
+    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <div class="return">
+                    {{message}}
+                </div>
+
+                <a href="/greeted">Greeted Names</a>
+
+                {{!-- <a href="persons">Persons</a> --}}
+            </div>
+
+            <div class="counter">
+                {{counter}}
+
+{{messages.error}}
+            </div>
+        </div>
+    </div>
+</div>
