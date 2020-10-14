@@ -50,23 +50,25 @@ app.post("/greetings", async function (req, res) {
     var name = req.body.nameEntered;
     var lang = req.body.language;
 
-    if (!name) {
+    if (lang === undefined && name=== "") {
+        req.flash('error', "Please enter language and name.")
+        res.render('index');
+        return;
+    }
+
+    else if (!name) {
         req.flash('error', "Please enter name.")
         res.render('index');
         return;
     }
 
-    if (!lang) {
+    else if (!lang) {
         req.flash('error', "Please enter language.")
         res.render('index');
         return;
     }
 
-    else if (!name && !lang) {
-        req.flash('error', "Please enter name and language.")
-        res.render('index');
-        return;
-    }
+    
     // await greetings.insertName(name)
 
     console.log(await greetings.getCount())
@@ -98,7 +100,7 @@ app.get("/counter/:user_name", async function (req, res) {
       theName[name[i].name] = name[i].counter;
   }
 
-  let msg = "Hi, " + username + ' you have greeted ' + theName[username] + "" + 'times.' ;
+  let msg = "Hi, " + username + ' you have greeted ' + theName[username ] + " " + 'times.' ;
 
   
     res.render("person", {
