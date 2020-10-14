@@ -1,7 +1,14 @@
+<div class="row">
+  <h1>Greeted names</h1>
+<ul>
+{{#each name}}
+<li><a href="/counter/{{name}}">
+{{name}}</a></li>
+{{/each}} 
+</ul>
+    
+    <input type="button" value="Back!" onclick="history.back()">
 
+</div>
 
-{{#each list}}
-<a href="/counter/{{@key}}">
-{{@key}}</a>
-{{/each}}
-
+ 

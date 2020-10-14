@@ -1,4 +1,10 @@
 
+body {
+    background-image: url("../greetings-webapp/image/greet.jpeg");
+    background-color: #cccccc;
+    background-size: cover;
+  }
+
     .greet {
         background-color: whitesmoke;
         color: rgb(15, 14, 14);
