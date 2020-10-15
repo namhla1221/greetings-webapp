@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const greet = require("./greetings");
 const flash = require("express-flash");
 const session = require("express-session")
+const _ = require("lodash");
 const app = express();
 const pg = require("pg");
 const Pool = pg.Pool;
@@ -47,7 +48,7 @@ app.get("/", async function (req, res) {
 
 
 app.post("/greetings", async function (req, res) {
-    var name = req.body.nameEntered;
+    var name = _.capitalize(req.body.nameEntered);
     var lang = req.body.language;
 
     if (lang === undefined && name=== "") {
