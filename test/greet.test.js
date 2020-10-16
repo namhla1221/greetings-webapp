@@ -21,7 +21,6 @@ describe("The greetings", function () {
 	it("should be able to greet Namhla in English", async function () {
 		const greetings = greet(pool);
 		assert.equal("Hello, Namhla", await greetings.languages("Namhla", "English"));
-		namhla
 	})
 
 	it("should be able to greet Sinono in Isixhosa", async function () {
