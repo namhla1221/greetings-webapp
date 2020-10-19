@@ -2,9 +2,11 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const greet = require("./greetings");
+const Greet = require("./routes");
 const flash = require("express-flash");
 const session = require("express-session")
-const _ = require("lodash");
+//first install lodash using npm -g.
+
 const app = express();
 const pg = require("pg");
 const Pool = pg.Pool;
@@ -16,6 +18,8 @@ const pool = new Pool({
 });
 
 const greetings = greet(pool);
+
+const routeInst = Greet(greetings);
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main', layoutsDir: 'views/layouts' }));
 
@@ -36,92 +40,19 @@ app.use(flash());
 app.use(express.static('public'));
 
 
-app.get("/addFlash", function (req, res) {
-    res.redirect("/")
-});
+// app.get("/addFlash", routeInst.flash)
 
-app.get("/", async function (req, res) {
-    res.render("index", {
-
-    })
-});
+app.get("/", routeInst.home)
 
 
-app.post("/greetings", async function (req, res) {
-    var name = _.capitalize(req.body.nameEntered);
-    var lang = req.body.language;
-
-    if (lang === undefined && name=== "") {
-        req.flash('error', "Please enter language and name.")
-        res.render('index');
-        return;
-    }
-
-    else if (!name) {
-        req.flash('error', "Please enter name.")
-        res.render('index');
-        return;
-    }
-
-    else if (!lang) {
-        req.flash('error', "Please enter language.")
-        res.render('index');
-        return;
-    }
-
-    
-    
-
-    console.log(await greetings.getCount())
-    res.render('index', {
-        message: await greetings.languages(name, lang),
-        counter: await greetings.getCount(),
-
-    })
-});
+app.post("/greetings", routeInst.nameLang)
 
 
-app.get("/greeted", async function (req, res) {
-    
-    var indiNames = await greetings.getNames()
-    
-    res.render("greeted", {
-        name: indiNames
-        
-    })
-});
+app.get("/greeted", routeInst.getName)
 
-app.get("/counter/:user_name", async function (req, res) {
-    var theName = {}
-    let username = req.params.user_name;
-    let name = await greetings.getNames();
-  for(var i = 0;i < name.length; i++)
-      
-  if(theName[name[i].name] === undefined){
-      theName[name[i].name] = name[i].counter;
-  }
+app.get("/counter/:user_name", routeInst.theMessage)
 
-  let msg = "Hi, " + username + ' you have greeted ' + theName[username ] + " " + 'times.' ;
-
-  
-    res.render("person", {
-        
-        message : msg
-    })
-});
-
-app.get("/reset", async function (req, res){
-
-    await greetings.reset()
-
-    res.render('index', {
-
-        counter : await greetings.getCount(),
-
-    })
-  
-});
-
+app.get("/reset", routeInst.theReset )
 
 
 const PORT = process.env.PORT || 3014;
