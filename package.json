@@ -21,7 +21,7 @@
     "express-handlebars": "^5.1.0",
     "express-session": "^1.17.1",
     "lodash": "^4.17.20",
-    "pg": "^8.4.0"
+    "pg": "^8.4.1"
   },
   "devDependencies": {
     "mocha": "^8.1.3",
