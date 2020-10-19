@@ -70,7 +70,7 @@ app.post("/greetings", async function (req, res) {
     }
 
     
-    // await greetings.insertName(name)
+    
 
     console.log(await greetings.getCount())
     res.render('index', {
@@ -138,44 +138,3 @@ app.listen(PORT, function () {
 
 
 
-//Flash messages are used to provide a quick feedback 
-//to confirm a setting has been updated) to the user.
-
-//Tables are database objects that contain all the data in a database. 
-//In tables, data is logically organized in a row-and-column
-
-//each employee and columns representing employee information such as employee number, name, address
-
-//route for greeted , this route will greet people and start to calculate how many times I greeted that person .
-// app.get("/greeted", function (req, res) {
-//     var greetedNames = greetings.getNames();
-//     var counter = greetings.theCounter()
-//     res.render("greeted", {
-//         list: greetedNames,
-//         count: counter
-//     })
-// });
-
-// //It's getting counter for each person greeted
-// app.get("/counter/:user_name", function (req, res) {
-//     //I got two objects for username and name .
-//     let username = req.params.user_name;
-
-//     let names = greetings.getNames();
-//     console.log(names)
-//     //I got variable that will give me message .
-//     //like it will greet with name of person + message and the counter like how many times I greeted that person.
-//     var personsMsg = "Hi, " + username + ' you have greeted ' + names[username];
-
-//     res.render("person", {
-//         message: personsMsg,
-//         username
-//     })
-// });
-
-// if(name === ""){
-// msg = req.flash('info','fdfdfdfdfdfd')
-// }
-//flash - is used to store message
-//session- is used to save data
-//Session data is stored server-side.
