@@ -5,5 +5,3 @@ create table greet(
 );
 
 
--- insert  into greet (name , counter)
--- values ('Namhla', 1);

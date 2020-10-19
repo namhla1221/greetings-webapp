@@ -6,7 +6,7 @@ module.exports = function greetings(pool) {
     }
 
     async function countUpdate(count) {
-        var update = await pool.query('update greet set counter=counter+1 where name=$1', [count]);
+        var update = await pool.query('update greet set counter=counter+1 where Name=$1', [count]);
         return update;
     }
 

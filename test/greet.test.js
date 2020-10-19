@@ -36,27 +36,33 @@ describe("The greetings", function () {
 	})
 
 	it("should be able to add names to database and get user counter", async function () {
-		const  greetings = greet(pool);
+		const greetings = greet(pool);
 
 		await greetings.insertName("Njunju");
 		await greetings.insertName("Njunju");
 
 		const counter = await greetings.getCount("Njunju")
 
-    
+
 		assert.equal(2, counter);
 	})
 
-		it("should be able to update counter ", async function(){
-		const greetings =  greet(pool);
+	it("should be able to get names", async function () {
+		const greetings = greet(pool);
 
-		var message = await greetings.languages("Sipho", "English" )
+		await greetings.insertName("Namhla");
+		await greetings.insertName("Namhla");
 
-		assert.equal(message, "Hello, Sipho");
+		var names = await greetings.getNames();
+
+		assert.equal(names[0].name , "Namhla")
+		
 	})
 
+
+	
 	it("should be able to add peoples name in the database and get their counter", async function () {
-		
+
 		await greetings.insertName("Namhla");
 
 		const counter = await greetings.getCount("Namhla");
@@ -64,41 +70,6 @@ describe("The greetings", function () {
 		assert.equal(1, counter);
 	})
 
-	// 	it("should be able to reset counter and greeted name in the database to 0", async  function (){
-	// 	const greetings = greeet(pool);
-
-	// 	await greetings.
-	// 	const greeted = await greetings.reset()
-
-	// 	assert.equal()
-	// })
-
-
-
-
-	
-
-	// it("should be able to store names in the database", async function () {
-
-	// 	let greetings = greet(pool);
-
-	// 	await greetings.insertName("Dorathy");
-	// 	await greetings.insertName("Dorathy");
-		
-
-	// 	const stored = await greetings.getCount()
-
-	// 	assert.equal({ "Dorathy": 2}, stored);
-	// })
-
-	// it("should be able to reset counter and greeted name in the database to 0", async  function (){
-	// 	const greetings = greeet(pool);
-
-	// 	await greetings.
-	// 	const greeted = await greetings.reset()
-
-	// 	assert.equal()
-	// })
 
 
 	after(function () {
