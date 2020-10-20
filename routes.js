@@ -62,7 +62,7 @@ module.exports = function routes(greetings){
           theName[name[i].name] = name[i].counter;
       }
     
-      let msg = "Hi, " + username + ' you have greeted ' + theName[username ] + " " + 'times.' ;
+      let msg = "Hi, " + username + ' you have been greeted ' + theName[username ] + " " + 'times.' ;
     
       
         res.render("person", {
